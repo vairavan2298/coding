@@ -46,6 +46,18 @@ int findMissingElementUsingFormulae(int a[],int n){ // Time complexity = O(n)
 	}
 	return total-sum;
 }
+int findMissingElementUsingXor(int a[],int n){ // Time complexity = O(n)
+	int arrayXor=a[0];
+	for(int i=1;i<n-1;i++){
+		arrayXor^=a[i];
+	}
+	int totalXor=1;
+	for(int i=2;i<=n;i++){
+		totalXor^=i;
+	}
+	return totalXor^arrayXor;
+}
+
 
 
 int findMissingElementUsingExtraArray(int a[],int n){ // Time complexity = O(n) + Space complexity = O(n)
@@ -79,7 +91,8 @@ int main() {
 		}
 		//int missingElement=findMissingElement(a, n);
 		// int missingElement = findMissingElementUsingExtraArray(a, n);
-		int missingElement = findMissingElementUsingFormulae(a, n);
+		//int missingElement = findMissingElementUsingFormulae(a, n);
+		int missingElement = findMissingElementUsingXor(a, n);
 		cout<<missingElement<<endl;
 	}
 	return 0;
