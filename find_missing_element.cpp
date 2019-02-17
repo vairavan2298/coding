@@ -54,3 +54,6 @@ int main() {
 	}
 	return 0;
 }
+
+//Time Complexity
+// findMissingElement = n * n^2 = O(n^3)
