@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 int findSmallestIndex(int a[],int start, int end){
@@ -28,7 +29,7 @@ void printArray(int a[], int n){
 	cout<<endl;
 }
 
-int findMissingElement(int a[],int n){
+int findMissingElementUsingSorting(int a[],int n){ //  // Time complexity = O(n^3)
 	int* sortedArray=selectionSort(a,n-1);
 	//printArray(sortedArray, n-1);
 	int sortedArrayIterator = 0;
@@ -38,6 +39,34 @@ int findMissingElement(int a[],int n){
 		}
 	}
 }
+int findMissingElementUsingFormulae(int a[],int n){ // Time complexity = O(n)
+	int total=(n*(n+1))/2, sum=0;
+	for(int i=0;i<n-1;i++){
+		sum+=a[i];
+	}
+	return total-sum;
+}
+
+
+int findMissingElementUsingExtraArray(int a[],int n){ // Time complexity = O(n) + Space complexity = O(n)
+	//memset(myarray, 0, sizeof(myarray)); // for automatically-allocated arrays
+	int b[n];
+	memset(b,-1,sizeof(b));
+	for(int i=0;i<n-1;i++){
+		int j=a[i];
+		b[j-1]=a[i];
+	}
+	int missingNumber;
+	for(int j=0;j<n;j++){
+		if(b[j] == -1){
+			missingNumber=j+1;
+			break;
+		}
+	}
+	return missingNumber;
+	
+}
+
 int main() {
 	// your code goes here
 	int i,n,t,j;
@@ -48,12 +77,10 @@ int main() {
 		for(i=0;i<n-1;i++){// gets n-1 element
 			cin>>a[i];
 		}
-		//printArray(a, n+1);
-		int missingElement=findMissingElement(a, n);
+		//int missingElement=findMissingElement(a, n);
+		// int missingElement = findMissingElementUsingExtraArray(a, n);
+		int missingElement = findMissingElementUsingFormulae(a, n);
 		cout<<missingElement<<endl;
 	}
 	return 0;
 }
-
-//Time Complexity
-// findMissingElement = n * n^2 = O(n^3)
