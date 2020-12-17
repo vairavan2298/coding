@@ -5,8 +5,8 @@ struct Node {
       struct Node *next; 
    };
 
-struct Node* createNode(int new_data) { 
-   struct Node* new_node = (struct Node*) malloc(sizeof(struct Node)); 
+struct Node *createNode(int new_data) { 
+   struct Node *new_node = (struct Node*) malloc(sizeof(struct Node)); 
    new_node->data = new_data; 
    new_node->next = NULL;  
    //cout<<"create node- pointer will store a address - new_node's address - new_node:"<<new_node<<endl;
@@ -32,7 +32,7 @@ void insertNode(struct Node *new_node,struct Node **head)// ** denotes the addre
 bool isSortedDesc(struct Node *head) 
 { 
    if (head == NULL) 
-      return true; 
+      return true;  
 
    // Traverse the list till last node and return 
    // false if a node is smaller than or equal 
@@ -52,13 +52,13 @@ void printList( struct Node *head) {
 } 
 int main() { 
     
-   struct Node* head = NULL;   
+   struct Node *head = NULL;   
    
    int n,arr[n];
    cin>>n;
    for(int i=0;i<n;i++){
       cin>>arr[i];
-      struct Node* new_node = createNode(arr[i]);
+      struct Node *new_node = createNode(arr[i]);
       insertNode (new_node, &head);
       
    }
